@@ -1,0 +1,12 @@
+select  bp.id, bp.business_name, bp.permit_number, bp.description, bp.type, bp.job_value, bpe.parcelnumber, bp.effective_date, bp.contractor_id, c.license_number,  pp.property_id, p.street, p.city, p.state, p.zip, p.latitude, p.longitude, "residential" as service_type
+from residential_solar_permits rsp
+join building_permits bp
+on rsp.building_permit_id = bp.id
+join properties_permits as pp
+			on bp.id = pp.building_permit_id
+		join properties as p
+			on pp.property_id = p.id
+			join building_permits_extras as bpe
+			on bp.id = bpe.building_permit_id
+			join contractors as c
+			on c.nid = bp.contractor_id;
