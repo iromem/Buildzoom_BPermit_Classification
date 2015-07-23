@@ -1,0 +1,6 @@
+SELECT bp.id, bp.description, bp.type, bp.subtype, bp.building_type, bp.business_name, bm.service_id, s.name
+FROM building_permits bp
+JOIN building_permits_services_manual bm
+ON bp.id = bm.building_permit_id
+left JOIN services s
+ON s.id = bm.service_id
